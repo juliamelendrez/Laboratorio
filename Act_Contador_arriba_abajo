@@ -22,11 +22,30 @@ INICIO:
 
   ; Inicializar contador en 0
   ldi r17, 0
+  rcall MOSTRAR_NUMERO
 
   ; Mostrar 0 en el display
-  ldi r16, 0x3F
-  out PORTD, r16
+  
 
 MAIN:
   rjmp MAIN
+
+MOSTRAR_NUMERO:
+  cpi r17, 0
+  breq MOSTRAR_0
+
+  cpi r17, 1
+  breq MOSTRAR_1
+
+  ret
+
+MOSTRAR_0:
+  ldi r16, 0x3F
+  out PORTD, r16
+  ret
+
+MOSTRAR_0:
+  ldi r16, 0x06
+  out PORTD, r16
+  ret  
 
