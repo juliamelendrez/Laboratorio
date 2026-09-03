@@ -12,5 +12,14 @@ INICIO:
   ldi r16, 0x00
   out PORTD, r16
 
+  ; Configurar PBO, PB1 y PB2 como entradas
+  ldi r16, 0b11111000
+  out DDRB, r16
+
+  ; Activar resistencias pull-up internas
+  ldi r16, 0b00000111
+  out PORTB, r16
+
 MAIN:
   rjmp MAIN
+
