@@ -30,9 +30,13 @@ INICIO:
   
 
 MAIN:
+  ; El contador está detenido?
+  cpi r18, 0
+  breq REVISAR_ACTIVAR
+
   ; Se presionó botón SUBIR en PBO?
   sbic PINB, 0
-  rjmp MAIN
+  rjmp REVISAR_BAJAR
 
   ; Aumentar contador
   inc r17
