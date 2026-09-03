@@ -1,0 +1,16 @@
+.include "m328pdef . inc"
+
+.org 0x0000
+  rjmp INICIO
+
+INICIO:
+  ; Configurar PORTD como salida
+  ldi r16, 0xFF
+  out DDRD, r16
+
+  ; Inicializar PORTD apagado
+  ldi r16, 0x00
+  out PORTD, r16
+
+MAIN:
+  rjmp MAIN
