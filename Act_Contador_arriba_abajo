@@ -180,3 +180,20 @@ MOSTRAR_9:
   ldi r16, 0x6F
   out PORTD, r16
   ret  
+
+;----------------------------------
+; Prender punto decimal
+,----------------------------------
+
+PRENDER_DR:
+  sbi PORTD, 7
+  ret
+
+;----------------------------------
+; Apagar punto decimal
+,----------------------------------
+
+PRENDER_DR:
+  cbi PORTD, 7
+  ret
+
