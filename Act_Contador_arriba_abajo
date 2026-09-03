@@ -12,13 +12,20 @@ INICIO:
   ldi r16, 0x00
   out PORTD, r16
 
-  ; Configurar PBO, PB1 y PB2 como entradas
+  ; Configurar PB0, PB1 y PB2 como entradas
   ldi r16, 0b11111000
   out DDRB, r16
 
   ; Activar resistencias pull-up internas
   ldi r16, 0b00000111
   out PORTB, r16
+
+  ; Inicializar contador en 0
+  ldi r17, 0
+
+  ; Mostrar 0 en el display
+  ldi r16, 0x3F
+  out PORTD, r16
 
 MAIN:
   rjmp MAIN
