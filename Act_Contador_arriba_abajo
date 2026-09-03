@@ -3,6 +3,9 @@
 .org 0x0000
   rjmp INICIO
 
+.org 0x0016
+  rjmp TIMER1_COMPA  
+
 INICIO:
   ; Configurar PORTD como salida
   ldi r16, 0xFF
@@ -30,12 +33,24 @@ INICIO:
   ldi r16, 0
   sts TCCR1A, r16
 
-  ldi r16, (1<<WGM12)
+  ; Iniciar Timer1, con prescaler 1024
+  ldi r16, (1<<WGM12) | (1<<CS12) | (1<<CS10)
   sts TCCR1B, r16
 
-  rcall MOSTRAR_NUMERO
+  ; Valor para 1 segundo con 16Mhz y prescalar 1024
+  ldi r16, high(15624)
+  sts OCR1AH, r16
 
-  ; Mostrar 0 en el display
+  ldi r16, low(15624)
+  sts OCR1AL, r16
+
+  ; Habilitar interrupcion por comparacion A del Timer1
+  ldi r16, (1<<OCIE1A)
+  sts TIMSK1, r16
+
+  ; Habilitar interrupciones globales sei
+
+  rcall MOSTRAR_NUMERO
   
 
 MAIN:
@@ -205,4 +220,16 @@ PRENDER_DR:
 PRENDER_DR:
   cbi PORTD, 7
   ret
+
+;----------------------------------
+; Interrupci[on Timer1 cada 1 segundo
+; Cambia el estado del punto decimal
+;----------------------------------
+Timer1_COMPA:
+  ind r16, PORTD
+  ldi r19, 0x80
+  eor r16, r19
+  out PORTD, r16
+
+  reti
 
