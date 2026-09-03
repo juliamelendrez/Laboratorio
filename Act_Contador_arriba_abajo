@@ -57,7 +57,7 @@ ESPERAR_SUBIR:
 REVISAR_BAJAR:
   ; Se presionó botón BAJAR en PB1?
   sbic PINB, 1
-  rjmp MAIN
+  rjmp REVISAR_ACTIVAR
 
   ; Si está en 0, pasar a 9
   cpi r17, 0
@@ -75,6 +75,22 @@ MOSTAR_BAJADA:
 ESPERAR_BAJAR:
   sbis PINB, 1
   rjmp ESPERAR_BAJAR
+
+  rjmp MAIN
+
+REVISAR_ACTIVAR:
+  ; Se presionó PB2?
+  sbic PINB, 2
+  rjmp MAIN
+
+  ; Cambiar estado entre 0 y 1
+  ldi r16, 1
+  eor r18, r16
+
+ESPERAR_ACTIVAR:
+  ; Esperar a que se suelte PB2
+  sbis PINB, 2
+  rjmp ESPERAR_ACTIVAR
 
   rjmp MAIN
 
