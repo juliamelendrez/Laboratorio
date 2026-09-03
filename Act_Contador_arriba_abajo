@@ -37,6 +37,30 @@ MOSTRAR_NUMERO:
   cpi r17, 1
   breq MOSTRAR_1
 
+    cpi r17, 2
+  breq MOSTRAR_2
+
+  cpi r17, 3
+  breq MOSTRAR_3
+
+    cpi r17, 4
+  breq MOSTRAR_4
+
+  cpi r17, 5
+  breq MOSTRAR_5
+
+    cpi r17, 6
+  breq MOSTRAR_6
+
+  cpi r17, 7
+  breq MOSTRAR_7
+
+    cpi r17, 8
+  breq MOSTRAR_8
+
+  cpi r17, 9
+  breq MOSTRAR_9
+
   ret
 
 MOSTRAR_0:
@@ -44,8 +68,47 @@ MOSTRAR_0:
   out PORTD, r16
   ret
 
-MOSTRAR_0:
+MOSTRAR_1:
   ldi r16, 0x06
   out PORTD, r16
   ret  
 
+MOSTRAR_2:
+  ldi r16, 0x5B
+  out PORTD, r16
+  ret
+
+MOSTRAR_3:
+  ldi r16, 0x4F
+  out PORTD, r16
+  ret  
+
+MOSTRAR_4:
+  ldi r16, 0x66
+  out PORTD, r16
+  ret
+
+MOSTRAR_5:
+  ldi r16, 0x6D
+  out PORTD, r16
+  ret  
+
+MOSTRAR_6:
+  ldi r16, 0x7D
+  out PORTD, r16
+  ret
+
+MOSTRAR_7:
+  ldi r16, 0x07
+  out PORTD, r16
+  ret  
+
+MOSTRAR_8:
+  ldi r16, 0x7F
+  out PORTD, r16
+  ret
+
+MOSTRAR_9:
+  ldi r16, 0x6F
+  out PORTD, r16
+  ret  
