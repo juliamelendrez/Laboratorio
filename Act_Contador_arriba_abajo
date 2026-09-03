@@ -35,16 +35,20 @@ MAIN:
   ; Aumentar contador
   inc r17
 
-  ; Mostrar nuevo valor
-  inc r17
+  ; Si llegó a 10, volver a 0
+  cpi r17, 10
+  brne MOSTRAR_SUBIDA
 
+  ldi r17, 0
+
+MOSTRAR_SUBIDA:
   ; Mostrar nuevo valor
   rcall MOSTRAR_NUMERO
 
   ; Esperar a que suelte el botón 
 ESPERAR_SUBIR:
   sbis PINB, 0
-  rjmp ESPERAR_SUNIR
+  rjmp ESPERAR_SUBIR
 
   rjmp MAIN
 
