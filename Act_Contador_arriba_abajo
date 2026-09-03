@@ -28,6 +28,24 @@ INICIO:
   
 
 MAIN:
+  ; Se presionó botón SUBIR en PBO?
+  sbic PINB, 0
+  rjmp MAIN
+
+  ; Aumentar contador
+  inc r17
+
+  ; Mostrar nuevo valor
+  inc r17
+
+  ; Mostrar nuevo valor
+  rcall MOSTRAR_NUMERO
+
+  ; Esperar a que suelte el botón 
+ESPERAR_SUBIR:
+  sbis PINB, 0
+  rjmp ESPERAR_SUNIR
+
   rjmp MAIN
 
 MOSTRAR_NUMERO:
