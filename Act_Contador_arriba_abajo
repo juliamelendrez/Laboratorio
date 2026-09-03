@@ -52,6 +52,30 @@ ESPERAR_SUBIR:
 
   rjmp MAIN
 
+REVISAR_BAJAR:
+  ; Se presionó botón BAJAR en PB1?
+  sbic PINB, 1
+  rjmp MAIN
+
+  ; Si está en 0, pasar a 9
+  cpi r17, 0
+  brne RESTAR
+
+  ldi r17, 9
+  rjmp MOSTRAR_BAJADA
+
+RESTAR:
+  dec r17
+
+MOSTAR_BAJADA:
+  rcall MOSTRAR_NUMERO
+
+ESPERAR_BAJAR:
+  sbis PINB, 1
+  rjmp ESPERAR_BAJAR
+
+  rjmp MAIN
+
 MOSTRAR_NUMERO:
   cpi r17, 0
   breq MOSTRAR_0
