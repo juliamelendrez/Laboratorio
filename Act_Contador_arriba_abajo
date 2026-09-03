@@ -22,8 +22,17 @@ INICIO:
 
   ; Inicializar contador en 0
   ldi r17, 0
+
   ; Estado inicial del contador: activo
   ldi r18, 1
+
+  ; Configurar Timer1 en modo CTC
+  ldi r16, 0
+  sts TCCR1A, r16
+
+  ldi r16, (1<<WGM12)
+  sts TCCR1B, r16
+
   rcall MOSTRAR_NUMERO
 
   ; Mostrar 0 en el display
